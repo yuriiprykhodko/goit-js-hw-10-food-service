@@ -18,10 +18,10 @@ refs.switchTogle.addEventListener('change', onSwitchChange);
 function onSwitchChange() {
   const a = Theme.LIGHT;
   const b = Theme.DARK;
-  c(a, b);
-  d(a, b);
+  onDarkTheme(a, b);
+  onLightTheme(a, b);
 }
-function c(a, b) {
+function onDarkTheme(a, b) {
   if (refs.switchTogle.checked) {
     refs.bodyTheme.classList.remove(a);
     refs.bodyTheme.classList.add(b);
@@ -29,7 +29,7 @@ function c(a, b) {
   }
 }
 
-function d(a, b) {
+function onLightTheme(a, b) {
   if (!refs.switchTogle.checked) {
     refs.bodyTheme.classList.remove(b);
     refs.bodyTheme.classList.add(a);
