@@ -15,22 +15,27 @@ refs.menu.insertAdjacentHTML('beforeend', cardsTemp(cards));
 
 refs.switchTogle.addEventListener('change', onSwitchChange);
 
-function onSwitchChange(evt) {
-  if (evt.target.checked) {
-    refs.bodyTheme.classList.remove(Theme.LIGHT);
-    refs.bodyTheme.classList.add(Theme.DARK);
-    localStorage.setItem('theme', Theme.DARK);
-  } else {
-    refs.bodyTheme.classList.remove(Theme.DARK);
-    refs.bodyTheme.classList.add(Theme.LIGHT);
-    localStorage.setItem('theme', Theme.LIGHT);
+function onSwitchChange() {
+  const a = Theme.LIGHT;
+  const b = Theme.DARK;
+  c(a, b);
+  d(a, b);
+}
+function c(a, b) {
+  if (refs.switchTogle.checked) {
+    refs.bodyTheme.classList.remove(a);
+    refs.bodyTheme.classList.add(b);
+    localStorage.setItem('theme', b);
   }
 }
 
-if (localStorage.getItem('theme') === Theme.DARK) {
-  refs.switchTogle.checked = true;
-  refs.bodyTheme.classList.add(Theme.DARK);
-} else {
-  refs.switchTogle.checked = false;
-  refs.bodyTheme.classList.add(Theme.LIGHT);
+function d(a, b) {
+  if (!refs.switchTogle.checked) {
+    refs.bodyTheme.classList.remove(b);
+    refs.bodyTheme.classList.add(a);
+    localStorage.setItem('theme', a);
+  }
 }
+const savedData = localStorage.getItem('theme') || Theme.LIGHT;
+refs.bodyTheme.classList.add(savedData);
+refs.switchTogle.checked = savedData === Theme.DARK;
